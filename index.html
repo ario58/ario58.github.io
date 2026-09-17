@@ -93,7 +93,7 @@
       <li>✉️ Join by invitation only</li>
     </ul>
 
-    <a class="btn" id="download" referrerpolicy="no-referrer"
+    <a class="btn js-apk" referrerpolicy="no-referrer"
        href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Get Android App</a>
     <a class="btn berry" href="join/">I have an invite code</a>
 
@@ -101,6 +101,6 @@
   </main>
 
   <script src="apk.js"></script>
-  <script>setApkHref(document.getElementById("download"));</script>
+  <script>Array.prototype.forEach.call(document.querySelectorAll(".js-apk"), setApkHref);</script>
 </body>
 </html>

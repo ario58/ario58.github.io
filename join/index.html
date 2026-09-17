@@ -93,14 +93,14 @@
       <div class="code" id="code"></div>
 
       <a class="btn" id="open" href="#">Open Secret Santa</a>
-      <a class="btn berry" id="download" referrerpolicy="no-referrer" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
+      <a class="btn berry js-apk" referrerpolicy="no-referrer" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
     </section>
 
     <section id="invalid" hidden>
       <p class="lede">This invitation link is invalid</p>
       <p class="sub">Ask whoever invited you for a fresh link &mdash; it should end in
         <code>?code=</code> followed by your invite code.</p>
-      <a class="btn berry" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
+      <a class="btn berry js-apk" referrerpolicy="no-referrer" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
       <a class="btn" href="../">Back to home</a>
     </section>
 
@@ -110,6 +110,9 @@
 <script src="../apk.js"></script>
 <script>
 (function () {
+  // The app download never depends on the invite code, so wire it up first.
+  Array.prototype.forEach.call(document.querySelectorAll(".js-apk"), setApkHref);
+
   var raw = new URLSearchParams(location.search).get('code') || '';
   var code = /^[A-Za-z0-9]{4,12}$/.test(raw) ? raw.toUpperCase() : null;
 
@@ -121,8 +124,6 @@
   document.getElementById('code').textContent = code;   // text only, never HTML
   document.getElementById('open').href = 'secretsanta://join?code=' + encodeURIComponent(code);
   document.getElementById('valid').hidden = false;
-
-  setApkHref(document.getElementById("download"));  // invite code is never sent
 })();
 </script>
 </body>
