@@ -40,7 +40,6 @@
     padding: 28px 22px 32px;
     text-align: center;
   }
-  .hat { font-size: 52px; line-height: 1; }
   h1 {
     font-size: 28px;
     margin: 12px 0 6px;
@@ -48,16 +47,6 @@
     letter-spacing: -.01em;
   }
   .tag { color: var(--berry); font-weight: 600; margin: 0 0 20px; }
-  p { color: var(--muted); margin: 0 0 16px; text-align: left; }
-  .rule {
-    border: 0;
-    height: 1px;
-    background: repeating-linear-gradient(90deg, var(--pine) 0 8px, transparent 8px 16px);
-    opacity: .35;
-    margin: 22px 0;
-  }
-  ul { text-align: left; color: var(--muted); padding-left: 22px; margin: 0 0 8px; }
-  li { margin-bottom: 8px; }
   .btn {
     display: block;
     padding: 16px 20px;
@@ -70,34 +59,15 @@
     margin-top: 12px;
   }
   .btn:active { background: var(--pine-dark); }
-  .btn.berry { background: var(--berry); }
-  .btn.berry:active { background: var(--berry-dark); }
-  footer { color: var(--muted); font-size: 14px; margin-top: 22px; }
 </style>
 </head>
 <body>
   <main class="card">
-    <div class="hat" aria-hidden="true">🎄</div>
     <h1>Ario's Fun Little Secret Santa</h1>
     <p class="tag">A private family gift exchange</p>
 
-    <p>This is a small, private Android app made for one family's Secret Santa.
-       It draws names, keeps everyone's match a surprise, and lets you jot down
-       a wish list &mdash; nothing more.</p>
-
-    <hr class="rule">
-
-    <ul>
-      <li>🎁 Everyone draws a name, nobody sees the others'</li>
-      <li>📝 Wish lists so gifts actually land</li>
-      <li>✉️ Join by invitation only</li>
-    </ul>
-
     <a class="btn js-apk" referrerpolicy="no-referrer"
        href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Get Android App</a>
-    <a class="btn berry" href="join/">I have an invite code</a>
-
-    <footer>Invitation-only. No accounts, no tracking. 🎅</footer>
   </main>
 
   <script src="apk.js"></script>

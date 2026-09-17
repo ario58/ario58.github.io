@@ -41,16 +41,14 @@
     padding: 28px 22px 32px;
     text-align: center;
   }
-  .hat { font-size: 52px; line-height: 1; }
   h1 { font-size: 26px; margin: 10px 0 4px; color: var(--pine-dark); }
   .lede { font-size: 20px; font-weight: 700; color: var(--berry); margin: 18px 0 4px; }
-  .sub { color: var(--muted); margin: 0 0 20px; }
   .label {
     font-size: 13px;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 6px;
+    margin: 18px 0 6px;
   }
   .code {
     font: 700 30px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -76,19 +74,15 @@
   .btn:active { background: var(--pine-dark); }
   .btn.berry { background: var(--berry); }
   .btn.berry:active { background: var(--berry-dark); }
-  footer { color: var(--muted); font-size: 14px; margin-top: 22px; }
   [hidden] { display: none !important; }
 </style>
 </head>
 <body>
   <main class="card">
-    <div class="hat" aria-hidden="true">🎄</div>
-    <h1>Secret Santa</h1>
+    <h1>Ario&rsquo;s Fun Little Secret Santa</h1>
 
     <section id="valid" hidden>
-      <p class="lede">You've been invited!</p>
-      <p class="sub">Join the family on<br><strong>Ario's Fun Little Secret Santa</strong></p>
-
+      <p class="lede">You&rsquo;ve been invited</p>
       <div class="label">Invite code</div>
       <div class="code" id="code"></div>
 
@@ -97,14 +91,9 @@
     </section>
 
     <section id="invalid" hidden>
-      <p class="lede">This invitation link is invalid</p>
-      <p class="sub">Ask whoever invited you for a fresh link &mdash; it should end in
-        <code>?code=</code> followed by your invite code.</p>
+      <p class="lede">This invitation link is invalid.</p>
       <a class="btn berry js-apk" referrerpolicy="no-referrer" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
-      <a class="btn" href="../">Back to home</a>
     </section>
-
-    <footer>Your invite code stays in this page. Nothing is stored or sent. 🎅</footer>
   </main>
 
 <script src="../apk.js"></script>
