@@ -102,8 +102,9 @@
   // The app download never depends on the invite code, so wire it up first.
   Array.prototype.forEach.call(document.querySelectorAll(".js-apk"), setApkHref);
 
-  var raw = new URLSearchParams(location.search).get('code') || '';
-  var code = /^[A-Za-z0-9]{4,12}$/.test(raw) ? raw.toUpperCase() : null;
+  // Display form XXXX-XXXX-XXXX-XXXX normalizes to the app's canonical 16 chars.
+  var raw = (new URLSearchParams(location.search).get('code') || '').trim().toUpperCase().replace(/-/g, '');
+  var code = /^[0-9A-HJKMNP-TV-Z]{16}$/.test(raw) ? raw : null;
 
   if (!code) {
     document.getElementById('invalid').hidden = false;
