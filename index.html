@@ -93,10 +93,14 @@
       <li>✉️ Join by invitation only</li>
     </ul>
 
-    <a class="btn" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Get the Android App</a>
+    <a class="btn" id="download" referrerpolicy="no-referrer"
+       href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Get Android App</a>
     <a class="btn berry" href="join/">I have an invite code</a>
 
     <footer>Invitation-only. No accounts, no tracking. 🎅</footer>
   </main>
+
+  <script src="apk.js"></script>
+  <script>setApkHref(document.getElementById("download"));</script>
 </body>
 </html>
