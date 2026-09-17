@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="no-referrer">
+<title>Join &mdash; Ario's Fun Little Secret Santa</title>
+<style>
+  :root {
+    --pine: #1f5c3d;
+    --pine-dark: #14432c;
+    --berry: #b3232c;
+    --berry-dark: #8c1a22;
+    --cream: #fdf6e8;
+    --paper: #fffaf0;
+    --ink: #2c2a26;
+    --muted: #6b655c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 48px;
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(31,92,61,.07) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 42%, rgba(179,35,44,.07) 0 2px, transparent 3px),
+      radial-gradient(circle at 34% 82%, rgba(31,92,61,.06) 0 2px, transparent 3px);
+    color: var(--ink);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--paper);
+    border: 1px solid rgba(31,92,61,.18);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(44,42,38,.10);
+    padding: 28px 22px 32px;
+    text-align: center;
+  }
+  .hat { font-size: 52px; line-height: 1; }
+  h1 { font-size: 26px; margin: 10px 0 4px; color: var(--pine-dark); }
+  .lede { font-size: 20px; font-weight: 700; color: var(--berry); margin: 18px 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .label {
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .code {
+    font: 700 30px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: .18em;
+    color: var(--pine-dark);
+    background: #fff;
+    border: 2px dashed rgba(31,92,61,.35);
+    border-radius: 14px;
+    padding: 14px 10px;
+    word-break: break-all;
+  }
+  .btn {
+    display: block;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--pine);
+    color: #fff;
+    margin-top: 14px;
+  }
+  .btn:active { background: var(--pine-dark); }
+  .btn.berry { background: var(--berry); }
+  .btn.berry:active { background: var(--berry-dark); }
+  footer { color: var(--muted); font-size: 14px; margin-top: 22px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="hat" aria-hidden="true">🎄</div>
+    <h1>Secret Santa</h1>
+
+    <section id="valid" hidden>
+      <p class="lede">You've been invited!</p>
+      <p class="sub">Join the family on<br><strong>Ario's Fun Little Secret Santa</strong></p>
+
+      <div class="label">Invite code</div>
+      <div class="code" id="code"></div>
+
+      <a class="btn" id="open" href="#">Open Secret Santa</a>
+      <a class="btn berry" id="download" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
+    </section>
+
+    <section id="invalid" hidden>
+      <p class="lede">This invitation link is invalid</p>
+      <p class="sub">Ask whoever invited you for a fresh link &mdash; it should end in
+        <code>?code=</code> followed by your invite code.</p>
+      <a class="btn berry" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Download Android App</a>
+      <a class="btn" href="../">Back to home</a>
+    </section>
+
+    <footer>Your invite code stays in this page. Nothing is stored or sent. 🎅</footer>
+  </main>
+
+<script>
+(function () {
+  var raw = new URLSearchParams(location.search).get('code') || '';
+  var code = /^[A-Za-z0-9]{4,12}$/.test(raw) ? raw.toUpperCase() : null;
+
+  if (!code) {
+    document.getElementById('invalid').hidden = false;
+    return;
+  }
+
+  document.getElementById('code').textContent = code;   // text only, never HTML
+  document.getElementById('open').href = 'secretsanta://join?code=' + encodeURIComponent(code);
+  document.getElementById('valid').hidden = false;
+
+  // Anonymous, tokenless lookup of the newest APK. Invite code is never sent.
+  fetch('https://api.github.com/repos/ario58/ArioSecretSantaReleases/releases/latest', {
+    referrerPolicy: 'no-referrer'
+  })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (rel) {
+      var apks = (rel.assets || []).filter(function (a) {
+        return typeof a.browser_download_url === 'string' && /\.apk$/i.test(a.name || '');
+      });
+      var best = apks.find(function (a) { return /^SecretSanta-v/i.test(a.name); }) || apks[0];
+      if (best) document.getElementById('download').href = best.browser_download_url;
+    })
+    .catch(function () { /* keep the releases-page fallback href */ });
+})();
+</script>
+</body>
+</html>

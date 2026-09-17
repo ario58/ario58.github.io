@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.secretsanta.app",
+      "sha256_cert_fingerprints": [
+        "1C:77:E5:5B:18:A9:50:6B:04:28:93:A1:DA:B1:93:30:F2:0A:5A:57:F9:B5:1E:C6:F7:B1:11:88:65:34:77:69"
+      ]
+    }
+  }
+]

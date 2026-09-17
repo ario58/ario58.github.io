@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Ario's Fun Little Secret Santa</title>
+<style>
+  :root {
+    --pine: #1f5c3d;
+    --pine-dark: #14432c;
+    --berry: #b3232c;
+    --berry-dark: #8c1a22;
+    --cream: #fdf6e8;
+    --paper: #fffaf0;
+    --ink: #2c2a26;
+    --muted: #6b655c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 48px;
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(31,92,61,.07) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 42%, rgba(179,35,44,.07) 0 2px, transparent 3px),
+      radial-gradient(circle at 34% 82%, rgba(31,92,61,.06) 0 2px, transparent 3px);
+    color: var(--ink);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--paper);
+    border: 1px solid rgba(31,92,61,.18);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(44,42,38,.10);
+    padding: 28px 22px 32px;
+    text-align: center;
+  }
+  .hat { font-size: 52px; line-height: 1; }
+  h1 {
+    font-size: 28px;
+    margin: 12px 0 6px;
+    color: var(--pine-dark);
+    letter-spacing: -.01em;
+  }
+  .tag { color: var(--berry); font-weight: 600; margin: 0 0 20px; }
+  p { color: var(--muted); margin: 0 0 16px; text-align: left; }
+  .rule {
+    border: 0;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--pine) 0 8px, transparent 8px 16px);
+    opacity: .35;
+    margin: 22px 0;
+  }
+  ul { text-align: left; color: var(--muted); padding-left: 22px; margin: 0 0 8px; }
+  li { margin-bottom: 8px; }
+  .btn {
+    display: block;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--pine);
+    color: #fff;
+    margin-top: 12px;
+  }
+  .btn:active { background: var(--pine-dark); }
+  .btn.berry { background: var(--berry); }
+  .btn.berry:active { background: var(--berry-dark); }
+  footer { color: var(--muted); font-size: 14px; margin-top: 22px; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="hat" aria-hidden="true">🎄</div>
+    <h1>Ario's Fun Little Secret Santa</h1>
+    <p class="tag">A private family gift exchange</p>
+
+    <p>This is a small, private Android app made for one family's Secret Santa.
+       It draws names, keeps everyone's match a surprise, and lets you jot down
+       a wish list &mdash; nothing more.</p>
+
+    <hr class="rule">
+
+    <ul>
+      <li>🎁 Everyone draws a name, nobody sees the others'</li>
+      <li>📝 Wish lists so gifts actually land</li>
+      <li>✉️ Join by invitation only</li>
+    </ul>
+
+    <a class="btn" href="https://github.com/ario58/ArioSecretSantaReleases/releases/latest">Get the Android App</a>
+    <a class="btn berry" href="join/">I have an invite code</a>
+
+    <footer>Invitation-only. No accounts, no tracking. 🎅</footer>
+  </main>
+</body>
+</html>
